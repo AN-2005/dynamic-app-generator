@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Dynamic App Generator (Config Driven)
 
-## Getting Started
+A full-stack **config-driven mini app generator** built using **Next.js, Prisma, and PostgreSQL (Supabase)**.
 
-First, run the development server:
+This project dynamically renders forms, tables, and features based on a JSON configuration — allowing rapid app creation without hardcoding UI.
+
+---
+
+## 🔥 Live Demo
+👉 https://dynamic-app-generator-kappa.vercel.app/
+
+---
+
+## 🧠 Core Idea
+
+Instead of writing UI manually, this system:
+- Reads a JSON config
+- Generates forms dynamically
+- Stores data in database
+- Displays data in tables
+- Supports extensions like CSV import/export
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend:** Next.js (App Router)
+- **Backend:** API Routes (Next.js)
+- **Database:** PostgreSQL (Supabase)
+- **ORM:** Prisma
+- **Styling:** Tailwind CSS
+
+---
+
+## 📦 Features Implemented
+
+### ✅ 1. Config-Driven UI (Core Feature)
+- Forms generated dynamically from config
+- Tables rendered dynamically
+- Fully reusable architecture
+
+---
+
+### ✅ 2. CSV Import System
+- Upload CSV file
+- Parse data in browser
+- Send to backend
+- Store in database
+- Automatically reflected in UI
+
+---
+
+### ✅ 3. CSV Export
+- Export table data to CSV
+- Handles empty data safely
+- Download ready file
+
+---
+
+### ✅ 4. Search & Filter
+- Search across all fields
+- Real-time filtering
+
+---
+
+### ✅ 5. Responsive UI
+- Mobile-friendly layout
+- Clean modern UI with Tailwind
+
+---
+
+## 📁 Project Structure
+dynamic-app/
+│── app/
+│ ├── api/
+│ │ └── data/[collection]/route.ts
+│ ├── page.tsx
+│
+│── components/
+│ ├── FormRenderer.js
+│ ├── TableRenderer.js
+│ ├── CSVUploader.js
+│ └── Toast.js
+│
+│── prisma/
+│ └── schema.prisma
+│
+│── config/
+│ └── app.json
+│
+│── .env
+│── package.json
+
+---
+
+## ⚡ How It Works
+
+1. Config file (`app.json`) defines UI
+2. FormRenderer reads config → builds form
+3. Data submitted → API → Prisma → DB
+4. TableRenderer fetches → displays data
+5. CSV Import adds bulk data
+6. CSV Export downloads data
+
+---
+
+## 🧪 Sample Config
+
+```json
+{
+  "pages": [
+    {
+      "type": "form",
+      "collection": "users",
+      "fields": [
+        { "name": "name", "type": "text" },
+        { "name": "email", "type": "email" }
+      ]
+    },
+    {
+      "type": "table",
+      "collection": "users"
+    }
+  ]
+}
+---
+
+## 🛠️ Setup Instructions
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/YOUR_USERNAME/dynamic-app-generator.git
+cd dynamic-app-generator
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env` file:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+DATABASE_URL=your_database_url
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run project:
 
-## Learn More
+```bash
+npx prisma generate
+npx prisma db push
+npm run dev
+```
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⚠️ Edge Cases Handled
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Handles empty data safely
+- Prevents crash when no records exist
+- Ignores invalid CSV rows
+- Safe API error handling using try/catch
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎥 Demo Video
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👉 https://www.loom.com/share/d34e527f21d54dbf95f2b09ecebd0671
