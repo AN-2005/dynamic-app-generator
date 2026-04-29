@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import config from "../config/app.json";
+
 import FormRenderer from "../components/FormRenderer";
 import TableRenderer from "../components/TableRenderer";
+import CSVUploader from "../components/CSVUploader"; // ✅ IMPORT
 
 export default function Home() {
   const [refresh, setRefresh] = useState(false);
@@ -13,6 +15,9 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-4">
         Dynamic App Generator (Config Driven)
       </h1>
+
+      {/* ✅ ADD CSV UPLOADER HERE */}
+      <CSVUploader onUploadSuccess={() => setRefresh(!refresh)} />
 
       {config.pages.map((page, i) => {
         if (page.type === "form") {
